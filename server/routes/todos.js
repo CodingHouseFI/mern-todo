@@ -14,8 +14,13 @@ router.put('/:id/toggle', (req, res) => {
     // toggle isComplete
     // save the todo
     // pass the updated todo into the callback
+    if(err) {
+      return res.status(400).send(err);
+    }
 
-    res.status(err ? 400 : 200).send(err || savedTodo);
+    Todo.find({}, (err, todos) => {
+      res.status(err ? 400 : 200).send(err || todos);
+    });
   });
 })
 
@@ -44,7 +49,13 @@ router.route('/:id')
   })
   .put((req, res) => {
     Todo.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true}, (err, todo) => {
-      res.status(err ? 400 : 200).send(err || todo);
+      if(err) {
+        return res.status(400).send(err);
+      }
+
+      Todo.find({}, (err, todos) => {
+        res.status(err ? 400 : 200).send(err || todos);
+      });
     });
   })
 
