@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 
-import List from './components/List'
+import List from './List'
 
 export default class App extends Component {
   constructor() {
@@ -28,7 +28,7 @@ export default class App extends Component {
 
     return (
       <Router history={browserHistory}>
-        <Route path='/list' component={List} todos={this.state.todos}></Route>
+        <Route path='/' component={List} todos={this.state.todos}></Route>
       </Router>
     )
   }
