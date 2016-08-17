@@ -5,6 +5,20 @@ const Todo = require('../models/todo');
 
 // base url: /api/todos
 
+// PUT /api/todos/57ae7455a7657a575ae/toggle
+
+router.put('/:id/toggle', (req, res) => {
+
+  Todo.toggle(req.params.id, (err, savedTodo) => {
+    // find todo by id
+    // toggle isComplete
+    // save the todo
+    // pass the updated todo into the callback
+
+    res.status(err ? 400 : 200).send(err || savedTodo);
+  });
+})
+
 router.route('/')
   .get((req, res) => {
     Todo.find({}, (err, todos) => {
